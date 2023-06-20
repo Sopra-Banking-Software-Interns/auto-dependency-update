@@ -7,7 +7,7 @@ REPO_URL="https://github.com/Sopra-Banking-Software-Interns/auto-dependency-upda
 GITHUB_TOKEN=$token
 # echo $GITHUB_TOKEN
 # Issue title and body
-sleep 60
+sleep 120
 ISSUE_TITLE="Available version updates"
 ISSUE_BODY=$(cat version_changes.txt)
 
