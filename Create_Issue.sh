@@ -7,9 +7,9 @@ REPO_URL="https://github.com/Sopra-Banking-Software-Interns/auto-dependency-upda
 GITHUB_TOKEN=$token
 # echo $GITHUB_TOKEN
 # Issue title and body
-sleep 30
+sleep 60
 ISSUE_TITLE="Available version updates"
-ISSUE_BODY=$(cat testing.txt)
+ISSUE_BODY=$(cat version_changes.txt)
 
 # Extract the owner and repository name from the URL
 REPO_OWNER=$(echo "$REPO_URL" | awk -F/ '{print $(NF-1)}')
