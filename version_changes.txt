@@ -1,14 +1,20 @@
-Update available for @babel/generator... Latest 7.22.5 available
-Update available for @babel/parser... Latest 7.22.5 available
-Update available for @babel/types... Latest 7.22.5 available
+Update available for body-parser... Latest 1.20.2 available
 Update available for chalk... Latest 5.2.0 available
-Update available for fs-extra... Latest 11.1.1 available
-Update available for globby... Latest 13.2.0 available
-Update available for into-stream... Latest 8.0.0 available
-Update available for is-core-module... Latest 2.12.1 available
-Update available for minimist... Latest 1.2.8 available
-Update available for multistream... Latest 4.1.0 available
-pkg-fetch is up to date
-prebuild-install is up to date
-Update available for resolve... Latest 1.22.2 available
-Update available for stream-meter... Latest 1.0.4 available
+Update available for compression... Latest 1.7.4 available
+Update available for connect-pause... Latest 0.1.0 available
+Update available for cors... Latest 2.8.5 available
+Update available for errorhandler... Latest 1.5.1 available
+Update available for express... Latest 4.18.2 available
+Update available for express-urlrewrite... Latest 2.0.1 available
+Update available for json-parse-helpfulerror... Latest 1.0.3 available
+Update available for lodash... Latest 4.17.21 available
+Update available for lodash-id... Latest 0.14.1 available
+Update available for lowdb... Latest 6.0.1 available
+Update available for method-override... Latest 3.0.0 available
+Update available for morgan... Latest 1.10.0 available
+Update available for nanoid... Latest 4.0.2 available
+Update available for please-upgrade-node... Latest 3.2.0 available
+Update available for pluralize... Latest 8.0.0 available
+Update available for server-destroy... Latest 1.0.1 available
+Update available for standard... Latest 17.1.0 available
+Update available for yargs... Latest 17.7.2 available
