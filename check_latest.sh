@@ -1,5 +1,5 @@
 truncate -s 0 version_changes.txt
-json=$(cat test.json)
+json=$(cat dependencies.json)
 echo "$json" | jq -c 'to_entries[]' | while IFS= read -r element; do
     key=$(echo "$element" | jq -r '.key')
     value=$(echo "$element" | jq -r '.value')
