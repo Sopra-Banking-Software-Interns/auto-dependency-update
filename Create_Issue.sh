@@ -8,8 +8,8 @@ GITHUB_TOKEN=$token
 # echo $GITHUB_TOKEN
 # Issue title and body
 ISSUE_TITLE="Available version updates"
-ISSUE_BODY=$(cat testing.txt)
-
+ISSUE_BODY=$(cat version_changes.txt)
+echo $ISSUE_BODY
 # Extract the owner and repository name from the URL
 REPO_OWNER=$(echo "$REPO_URL" | awk -F/ '{print $(NF-1)}')
 REPO_NAME=$(echo "$REPO_URL" | awk -F/ '{print $NF}' | sed 's/.git$//')
