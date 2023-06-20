@@ -8,11 +8,6 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
-    - name: Configure Git
-      run: |
-        git config --global user.email "prakhar.manitripathi.cd.mec20@itbhu.ac.in"
-        git config --global user.name "codeprakhar"
-      shell: bash
     - name: Run script file
       run: |
         chmod +x ./package2dependency.sh
