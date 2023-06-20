@@ -1,0 +1,14 @@
+Update available for @babel/generator... Latest 7.22.5 available
+Update available for @babel/parser... Latest 7.22.5 available
+Update available for @babel/types... Latest 7.22.5 available
+Update available for chalk... Latest 5.2.0 available
+Update available for fs-extra... Latest 11.1.1 available
+Update available for globby... Latest 13.2.0 available
+Update available for into-stream... Latest 8.0.0 available
+Update available for is-core-module... Latest 2.12.1 available
+Update available for minimist... Latest 1.2.8 available
+Update available for multistream... Latest 4.1.0 available
+pkg-fetch is up to date
+prebuild-install is up to date
+Update available for resolve... Latest 1.22.2 available
+Update available for stream-meter... Latest 1.0.4 available
