@@ -4,7 +4,7 @@
 REPO_URL="https://github.com/Sopra-Banking-Software-Interns/auto-dependency-update"
 
 # GitHub personal access token
-GITHUB_TOKEN="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"
+GITHUB_TOKEN=$token
 # echo $GITHUB_TOKEN
 # Issue title and body
 ISSUE_TITLE="Available version updates"
@@ -49,14 +49,3 @@ fi
 
 # Display the created issue number
 echo "New issue created: #$issue_number"
-
-
-while read -r line; do
-  curl -L \
-  -X POST \
-  -H "Accept: application/vnd.github+json" \
-  -H "Authorization: Bearer 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"\
-  -H "X-GitHub-Api-Version: 2022-11-28" \
-  https://api.github.com/repos/OWNER/REPO/issues/ISSUE_NUMBER/comments \
-  -d "{"body":$line}"
-done <version_changes.txt

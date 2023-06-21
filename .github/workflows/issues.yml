@@ -1,0 +1,17 @@
+env:
+  token: ${{ secrets.ACCESS_TOKEN }}
+
+name: create-map
+on:
+  issues:
+    types:
+      - closed
+jobs:
+  run_tests:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run script file
+      run: |
+        chmod +x ./check_latest.sh
+        ./check_latest.sh
