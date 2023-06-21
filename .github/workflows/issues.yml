@@ -21,16 +21,16 @@ jobs:
           ./read_comment.sh
         shell: bash
 
-      - name: Create dependencies file
-        run: |
-          echo "Running package2dependency.sh"
-          chmod +x ./upd_req2updates.sh
-          ./upd_req2updates.sh
-        shell: bash
+      # - name: Create dependencies file
+      #   run: |
+      #     echo "Running upd_req2updates.sh"
+      #     chmod +x ./upd_req2updates.sh
+      #     ./upd_req2updates.sh
+      #   shell: bash
 
-      - name: Update the dependencies
-        run: |
-          echo "Running dependency_updates.sh"
-          chmod +x ./dependency_updates.sh
-          ./dependency_updates.sh
-        shell: bash
+      # - name: Update the dependencies
+      #   run: |
+      #     echo "Running dependency_updates.sh"
+      #     chmod +x ./dependency_updates.sh
+      #     ./dependency_updates.sh
+      #   shell: bash
