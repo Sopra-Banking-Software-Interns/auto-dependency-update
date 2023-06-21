@@ -17,4 +17,4 @@ comments=$(curl -sSL -H "Authorization: token $TOKEN" "$API/repos/$USERNAME/$REP
 latest_comment=$(echo "$comments" | jq -r 'max_by(.created_at).body')
 
 # Output the comment to a text file
-echo "$latest_comment" > update_requirements.txt
+echo "$latest_comment" > update_requirement.txt
