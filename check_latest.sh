@@ -12,3 +12,5 @@ echo "$json" | jq -c 'to_entries[]' | while IFS= read -r element; do
         echo "$key is up to date">>version_changes.txt
     fi
 done
+
+rm -f dependencies.json
