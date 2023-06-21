@@ -6,3 +6,5 @@ do
     echo "Updating $line"
     npm install $line
 done < updates.txt
+
+rm -f updates.txt
