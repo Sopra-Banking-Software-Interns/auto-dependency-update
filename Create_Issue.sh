@@ -4,18 +4,17 @@
 REPO_URL="https://github.com/Sopra-Banking-Software-Interns/auto-dependency-update"
 
 # GitHub personal access token
-GITHUB_TOKEN=$token
+GITHUB_TOKEN="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"
 # echo $GITHUB_TOKEN
 # Issue title and body
 ISSUE_TITLE="Available version updates"
-ISSUE_BODY=$(cat version_changes.txt)
+ISSUE_BODY=$(cat version_test.txt)
 echo $ISSUE_BODY
 # Extract the owner and repository name from the URL
 REPO_OWNER=$(echo "$REPO_URL" | awk -F/ '{print $(NF-1)}')
 REPO_NAME=$(echo "$REPO_URL" | awk -F/ '{print $NF}' | sed 's/.git$//')
-
 # Create the issue using the GitHub API
-response=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
+response=$(curl -H "Authorization: Bearer $GITHUB_TOKEN" \
   -H "Accept: application/vnd.github.v3+json" \
   -d "{\"title\":\"$ISSUE_TITLE\",\"body\":\"$ISSUE_BODY\"}" \
   "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/issues")
@@ -41,3 +40,14 @@ fi
 
 # Display the created issue number
 echo "New issue created: #$issue_number"
+
+
+while read -r line; do
+  curl -L \
+  -X POST \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer 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"\
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  https://api.github.com/repos/OWNER/REPO/issues/ISSUE_NUMBER/comments \
+  -d "{"body":$line}"
+done <version_changes.txt
