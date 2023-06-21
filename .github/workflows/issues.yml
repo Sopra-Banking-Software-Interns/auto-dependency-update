@@ -11,11 +11,17 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
-    - name: Run script file
+    - name: Read comments
       run: |
         chmod +x ./read_comment.sh
         ./read_comment.sh
+      shell: bash 
+    - name: Create dependencies file
+      run: |
         chmod +x ./upd_req2updates.sh
         ./upd_req2updates.sh
+      shell: bash 
+    - name: update the dependencies
+      run: |
         chmod +x ./dependency_updates.sh
         ./dependency_updates.sh
