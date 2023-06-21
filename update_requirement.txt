@@ -1,0 +1,4 @@
+~UPD
+Update available for server-destroy... Latest 1.0.1 available
+Update available for standard... Latest 17.1.0 available
+Update available for yargs... Latest 17.7.2 available
