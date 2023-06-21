@@ -1,6 +1,5 @@
-truncate -s 0 updates.txt
-file="update_requirement.txt"
 touch updates.txt
+file="update_requirement.txt"
 check=0
 while IFS= read -r line || [ -n "$line" ]; do
 line=$(echo "$line" | awk '{$1=$1};1')
