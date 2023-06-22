@@ -15,9 +15,11 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: Read comments
-        run: |
-          ./read_comment.sh
         shell: bash
+        run: |
+           chmod +x ./upd_req2updates.sh
+           ./upd_req2updates.s
+
 
       # - name: Create dependencies file
       #   run: |
