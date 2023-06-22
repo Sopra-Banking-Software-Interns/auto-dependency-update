@@ -1,7 +1,4 @@
-env:
-  token: ${{ secrets.ACCESS_TOKEN }}
-
-name: create-map
+name: Issue Closed Workflow
 
 on:
   issues:
@@ -9,29 +6,27 @@ on:
       - closed
 
 jobs:
-  run_tests:
-    runs-on: ubuntu-20.04
+  run_scripts:
+    runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      
-      - name: Read comment
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Run read_comment.sh
         run: |
-          echo "Running read_comment.sh"
           chmod +x ./read_comment.sh
-          ./read_comment.sh "${{ env.token }}"
+          ./read_comment.sh
         shell: bash
 
+      - name: Run upd_req2updates.sh
+        run: |
+          chmod +x ./upd_req2updates.sh
+          ./upd_req2updates.sh
+        shell: bash
 
-      # - name: Create dependencies file
-      #   run: |
-      #     echo "Running upd_req2updates.sh"
-      #     chmod +x ./upd_req2updates.sh
-      #     ./upd_req2updates.sh
-      #   shell: bash
-
-      # - name: Update the dependencies
-      #   run: |
-      #     echo "Running dependency_updates.sh"
-      #     chmod +x ./dependency_updates.sh
-      #     ./dependency_updates.sh
-      #   shell: bash
+      - name: Run dependency_updates.sh
+        run: |
+          chmod +x ./dependency_updates.sh
+          ./dependency_updates.sh
+        shell: bash
