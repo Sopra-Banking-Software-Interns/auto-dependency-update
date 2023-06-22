@@ -24,7 +24,7 @@ latest_comment=$(echo "$comments" | jq -r '[.[] | {created_at: .created_at, body
 
 # Check if latest_comment is empty
 if [[ -z "$latest_comment" ]]; then
-    echo "No latest comment found."
+    echo "No latest comment found." > update_requirement.txt
     exit 0
 fi
 
