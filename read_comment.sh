@@ -2,6 +2,7 @@
 
 TOKEN=$token
 
+echo "Here's the new comment that I found:"
 # Extract the username and repository name from the GitHub URL
 URL="https://github.com/Sopra-Banking-Software-Interns/workflow-2_test"
 USERNAME=$(echo "$URL" | sed -n 's#https://github.com/\([^/]*\)/\([^/]*\).*#\1#p')
