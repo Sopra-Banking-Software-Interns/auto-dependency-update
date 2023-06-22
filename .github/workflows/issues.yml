@@ -1,0 +1,38 @@
+name: Issue Closed Workflow
+
+env:
+  token: ${{ secrets.ACCESS_TOKEN }}
+
+on:
+  issues:
+    types:
+      - closed
+
+jobs:
+  run_scripts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
+      - name: Run read_comment.sh
+        run: |
+          chmod +x ./read_comment.sh
+          ./read_comment.sh
+        shell: bash
+
+      - name: Run upd_req2updates.sh
+        run: |
+          chmod +x ./upd_req2updates.sh
+          ./upd_req2updates.sh
+        shell: bash
+
+      - name: Run dependency_updates.sh
+        run: |
+          chmod +x ./dependency_updates.sh
+          ./dependency_updates.sh
+        shell: bash
