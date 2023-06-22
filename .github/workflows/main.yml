@@ -2,24 +2,34 @@ env:
   token: ${{ secrets.ACCESS_TOKEN }}
 
 name: create-map
-
-on:
-  issues:
-    types:
-      - closed
-  push:
-    branches:
-      - main
+on: push
 
 jobs:
   run_tests:
     runs-on: ubuntu-20.04
     steps:
+      - name: Debug Info
+        run: |
+          echo "Running Debug Info"
+          env
+        shell: bash
+
       - uses: actions/checkout@v2
       
-      - name: Read comment
+      - name: Run script file
         run: |
-          echo "Running read_comment.sh"
-          chmod +x ./read_comment.sh
-          ./read_comment.sh "${{ env.token }}"
+          echo "Running package2dependency.sh"
+          chmod +x ./package2dependency.sh
+          ./package2dependency.sh
+          
+          echo "Running check_latest.sh"
+          chmod +x ./check_latest.sh
+          ./check_latest.sh
+        shell: bash
+
+      - name: create issue
+        run: |
+          echo "Running Create_Issue.sh"
+          chmod +x ./Create_Issue.sh
+          ./Create_Issue.sh
         shell: bash
