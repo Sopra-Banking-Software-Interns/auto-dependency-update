@@ -1,3 +1,4 @@
+# GitHub API credentials and repository information
 GITHUB_USERNAME="CodePrakhar"
 GITHUB_TOKEN=$token
 REPO_LINK="https://github.com/Sopra-Banking-Software-Interns/auto-dependency-update"
@@ -23,15 +24,21 @@ while IFS= read -r line; do
   # Prepare the JSON payload for updating the package.json
   json_payload=$(jq --arg package "$package_name" --arg version "$latest_version" '.dependencies[$package] = $version' "$PACKAGE_JSON_FILE")
   echo "$json_payload"
+
   # Encode the JSON payload using base64
   encoded_payload=$(echo "$json_payload" | base64 -w 0)
 
   # Get the current SHA of the package.json file
   current_sha=$(curl -s -u "$GITHUB_USERNAME:$GITHUB_TOKEN" "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/contents/$PACKAGE_JSON_FILE" | jq -r '.sha')
 
-curl -L -X PUT -H "Accept: application/vnd.github+json" \
-  https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/contents/$PACKAGE_JSON_FILE \
-  -d '{"message":"Update package.json","content":"'"$encoded_payload"'","sha":"'"$current_sha"'"}'
+  # Make a PUT request to the GitHub API to update the package.json file
+  curl -X PUT -u "$GITHUB_USERNAME:$GITHUB_TOKEN" \
+    -H "Accept: application/vnd.github+json" \
+    -d '{
+      "message": "Update package.json",
+      "content": "'"$encoded_payload"'",
+      "sha": "'"$current_sha"'"
+    }' "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/contents/$PACKAGE_JSON_FILE"
 
   # Wait for a few seconds to avoid rate limiting (if necessary)
   sleep 3
