@@ -30,4 +30,4 @@ if [[ -z "$latest_comment" ]]; then
 fi
 
 # Update the comment in the text file
-echo "$latest_comment" > update_requirement.txt
+echo "$latest_comment"
