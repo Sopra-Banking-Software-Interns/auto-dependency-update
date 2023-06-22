@@ -45,6 +45,8 @@ fi
 
 # Output the comment to a text file
 echo "$latest_comment" > update_requirement.txt
-git add update_requirement.txt
-git commit -m "adds requirements file"
-git push origin main
+if [[ $? -eq 0 ]]; then
+  echo "Latest comment from the latest closed issue has been written to update_requirement.txt file."
+else
+  echo "Error occurred while writing the latest comment to the file."
+fi
