@@ -1,5 +1,5 @@
 GITHUB_USERNAME="CodePrakhar"
-GITHUB_TOKEN="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"
+GITHUB_TOKEN=$token
 REPO_LINK="https://github.com/CodePrakhar/auto-dependency-update"
 
 # Path to the text file
