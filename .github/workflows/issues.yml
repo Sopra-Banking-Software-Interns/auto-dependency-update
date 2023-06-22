@@ -22,9 +22,6 @@ jobs:
       - name: Create src directory
         run: mkdir src
 
-      - name: Install dependencies
-        run: npm install
-
       - name: Run read_comment.sh
         run: |
           chmod +x ./read_comment.sh
