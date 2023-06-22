@@ -1,5 +1,8 @@
 name: Issue Closed Workflow
 
+env:
+  token: ${{ secrets.ACCESS_TOKEN }}
+
 on:
   issues:
     types:
