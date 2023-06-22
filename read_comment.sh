@@ -12,30 +12,36 @@ REPO=$(echo "$URL" | sed -n 's#https://github.com/\([^/]*\)/\([^/]*\).*#\2#p')
 # GitHub API endpoint
 API="https://api.github.com"
 
-# Fetch all comments
-comments=$(curl -sSL -H "Authorization: token $TOKEN" "$API/repos/$USERNAME/$REPO/issues/comments?per_page=100")
+# Fetch all closed issues
+closed_issues=$(curl -sSL -H "Authorization: token $TOKEN" "$API/repos/$USERNAME/$REPO/issues?state=closed&per_page=100")
 
-# Check if comments is empty
-if [[ -z "$comments" ]]; then
-    echo "No comments found."
+# Check if closed_issues is empty
+if [[ -z "$closed_issues" ]]; then
+    echo "No closed issues found."
     exit 0
 fi
 
-# Fetch all issues
-issues=$(curl -sSL -H "Authorization: token $TOKEN" "$API/repos/$USERNAME/$REPO/issues?state=all&per_page=100")
+# Find the latest closed issue
+latest_closed_issue=$(echo "$closed_issues" | jq -r '[.[] | select(.comments > 0)] | sort_by(.updated_at) | last')
 
-# Combine comments and issues
-all_data=$(echo "$comments" "$issues" | jq -s 'flatten')
+# Check if latest_closed_issue is empty
+if [[ -z "$latest_closed_issue" ]]; then
+    echo "No latest closed issue with comments found."
+    exit 0
+fi
 
-# Find the latest comment
-latest_comment=$(echo "$all_data" | jq -r '[.[] | {created_at: .created_at, body: .body}] | sort_by(.created_at) | last | .body')
+# Fetch the comments of the latest closed issue
+latest_issue_comments_url=$(echo "$latest_closed_issue" | jq -r '.comments_url')
+latest_issue_comments=$(curl -sSL -H "Authorization: token $TOKEN" "$latest_issue_comments_url")
+
+# Find the latest comment from the latest closed issue
+latest_comment=$(echo "$latest_issue_comments" | jq -r '[.[] | {created_at: .created_at, body: .body}] | sort_by(.created_at) | last | .body')
 
 # Check if latest_comment is empty
 if [[ -z "$latest_comment" ]]; then
-    echo "No latest comment found."
+    echo "No latest comment found in the latest closed issue."
     exit 0
 fi
 
 # Output the comment to a text file
 echo "$latest_comment" > update_requirement.txt
-echo "Latest comment has been written to update_requirement.txt file."
