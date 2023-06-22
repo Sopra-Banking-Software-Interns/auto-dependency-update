@@ -1,8 +1,5 @@
 name: Issue Closed Workflow
 
-env:
-  token: ${{ secrets.ACCESS_TOKEN }}
-
 on:
   issues:
     types:
@@ -15,6 +12,10 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+
+      - name: Set up environment variables
+        env:
+          token: ${{ secrets.ACCESS_TOKEN }}
 
       - name: Run read_comment.sh
         run: |
