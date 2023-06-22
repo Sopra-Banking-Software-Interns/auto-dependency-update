@@ -45,3 +45,4 @@ fi
 
 # Output the comment to a text file
 echo "$latest_comment" > update_requirement.txt
+echo $latest_comment
