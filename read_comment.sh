@@ -45,4 +45,6 @@ fi
 
 # Output the comment to a text file
 echo "$latest_comment" > update_requirement.txt
-echo $latest_comment
+git add update_requirement.txt
+git commit -m "adds requirements file"
+git push origin main
