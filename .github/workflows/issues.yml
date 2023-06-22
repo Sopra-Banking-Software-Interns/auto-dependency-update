@@ -27,6 +27,9 @@ jobs:
           chmod +x ./update_packages.sh
           ./update_packages.sh
         shell: bash
+        
+      - name: Create src directory
+        run: mkdir src
 
       - name: Run dependency_updates.sh
         run: |
