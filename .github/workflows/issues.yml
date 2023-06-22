@@ -12,30 +12,12 @@ jobs:
   run_scripts:
     runs-on: ubuntu-latest
 
-    container:
-      image: node:latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2.5.2
-        with:
-          always-auth: # optional, default is false
-          node-version: # optional
-          node-version-file: # optional
-          architecture: # optional
-          check-latest: # optional
-          registry-url: # optional
-          scope: # optional
-          token: # optional, default is ${{ github.token }}
-          cache: # optional
-          cache-dependency-path: # optional
-          version: # optional (deprecated)
-
-      - name: Create src directory
-        run: mkdir src
+      - name: Install jq
+        run: sudo apt-get install -y jq
 
       - name: Run read_comment.sh
         run: |
