@@ -43,6 +43,8 @@ if [[ -z "$latest_comment" ]]; then
     exit 0
 fi
 
+rm update_requirement.txt
+
 # Output the comment to a text file
 echo "$latest_comment" > update_requirement.txt
 if [[ $? -eq 0 ]]; then
