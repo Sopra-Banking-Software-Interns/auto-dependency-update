@@ -16,8 +16,6 @@ jobs:
       
       - name: Read comments
         run: |
-          echo "Running read_comment.sh"
-          chmod +x ./read_comment.sh
           ./read_comment.sh
         shell: bash
 
