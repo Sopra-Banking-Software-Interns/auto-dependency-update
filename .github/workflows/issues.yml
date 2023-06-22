@@ -25,12 +25,6 @@ jobs:
           ./read_comment.sh
         shell: bash
 
-      - name: Run upd_req2updates.sh
-        run: |
-          chmod +x ./upd_req2updates.sh
-          ./upd_req2updates.sh
-        shell: bash
-
       - name: Run dependency_updates.sh
         run: |
           chmod +x ./dependency_updates.sh

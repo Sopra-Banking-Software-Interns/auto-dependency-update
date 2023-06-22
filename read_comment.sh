@@ -43,23 +43,19 @@ if [[ -z "$latest_comment" ]]; then
     exit 0
 fi
 
-# Output the comment to a text file
-if [[ $? -eq 0 ]]; then
-  echo "Latest comment from the latest closed issue has been written to update_requirement.txt file."
-else
-  echo "Error occurred while writing the latest comment to the file."
-fi
-
-check=0
-while IFS= read -r line || [ -n "$line" ]; do
-line=$(echo "$line" | awk '{$1=$1};1')
-  if [[ "$line" == "~UPD" && $check -eq 0 ]]; then
+# Check if the first line of latest_comment includes ~UPD tag
+if [[ $latest_comment == *'~UPD'* ]]; then
     echo "Flag ~UPD found in the first line. Performing actions..."
-    check=1
-  elif [[ $check -eq 0 ]]; then
-    echo "Flag ~UPD not found. Aborting..."
-    break
-  else
-    echo "$line" >> updates.txt
-  fi
-done < "$latest_comment"
+    
+    # Store subsequent lines in updates.txt file
+    echo "$latest_comment" | awk -v tag="~UPD" 'NR==1{if ($0 ~ tag) check=1; else {print "Flag ~UPD not found. Aborting..."; exit 1}} NR>1{if (check) print $0}' > updates.txt
+    
+    if [[ $? -eq 0 ]]; then
+        echo "Lines after ~UPD tag in the latest comment have been written to updates.txt file."
+    else
+        echo "Error occurred while writing the lines to updates.txt file."
+    fi
+else
+    echo "Flag ~UPD not found in the first line. Aborting..."
+    exit 0
+fi
