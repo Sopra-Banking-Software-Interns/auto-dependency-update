@@ -43,12 +43,23 @@ if [[ -z "$latest_comment" ]]; then
     exit 0
 fi
 
-rm update_requirement.txt
-
 # Output the comment to a text file
-echo "$latest_comment" > update_requirement.txt
 if [[ $? -eq 0 ]]; then
   echo "Latest comment from the latest closed issue has been written to update_requirement.txt file."
 else
   echo "Error occurred while writing the latest comment to the file."
 fi
+
+check=0
+while IFS= read -r line || [ -n "$line" ]; do
+line=$(echo "$line" | awk '{$1=$1};1')
+  if [[ "$line" == "~UPD" && $check -eq 0 ]]; then
+    echo "Flag ~UPD found in the first line. Performing actions..."
+    check=1
+  elif [[ $check -eq 0 ]]; then
+    echo "Flag ~UPD not found. Aborting..."
+    break
+  else
+    echo "$line" >> updates.txt
+  fi
+done < "$latest_comment"
