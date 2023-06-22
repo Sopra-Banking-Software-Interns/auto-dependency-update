@@ -14,11 +14,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: Read comments
-        shell: bash
+      - name: Read comment
         run: |
-           chmod +x ./upd_req2updates.sh
-           ./upd_req2updates.s
+          echo "Running read_comment.sh"
+          chmod +x ./read_comment.sh
+          ./read_comment.sh "${{ env.token }}"
+        shell: bash
 
 
       # - name: Create dependencies file
