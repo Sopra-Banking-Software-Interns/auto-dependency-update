@@ -15,12 +15,6 @@ jobs:
         shell: bash
 
       - uses: actions/checkout@v2
-
-      - name: Retrieve Workflow Run ID
-        run: |
-          echo "Workflow Run ID: ${{ env.WORKFLOW_RUN_ID }}"
-          # Store the Workflow Run ID in a variable
-          WORKFLOW_RUN_ID="${{ env.WORKFLOW_RUN_ID }}"
       
       - name: Get Latest Commit Message
         id: get-commit-message
@@ -40,25 +34,6 @@ jobs:
           else
             echo "Commit message is not 'workflow2'. Continuing with the workflow."
           fi
-
-      - name: Check Workflow Run ID
-        run: |
-          if [[ "${{ github.run_id }}" == "$WORKFLOW_RUN_ID" ]]; then
-            echo "Skipping further execution to break the loop."
-            exit 0
-          fi
-      - name: Run Checks
-        id: run-checks
-        run: |
-          # Perform your checks here
-          # Access the SHA from the previous workflow output
-          commitSha=$(echo "${{ needs.get-sha.outputs.commit-sha }}")
-          echo "The commit SHA is $commitSha"
-
-      - name: Stop Workflow
-        if: ${{ steps.run-checks.outputs.commitSha == github.sha }}
-        run: echo "Stopping workflow because the SHA matches" 
-             exit 0
         
         
       - name: Run script file
