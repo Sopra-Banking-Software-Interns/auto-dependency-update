@@ -15,6 +15,21 @@
 #         shell: bash
 
 #       - uses: actions/checkout@v2
+
+#       - name: Retrieve Workflow Run ID
+#         run: |
+#           echo "Workflow Run ID: ${{ env.WORKFLOW_RUN_ID }}"
+#           # Store the Workflow Run ID in a variable
+#           WORKFLOW_RUN_ID="${{ env.WORKFLOW_RUN_ID }}"
+
+#       - name: Check Workflow Run ID
+#         run: |
+#           if [[ "${{ github.run_id }}" == "$WORKFLOW_RUN_ID" ]]; then
+#             echo "Skipping further execution to break the loop."
+#             exit 0
+#           fi
+
+
       
 #       - name: Run script file
 #         run: |
