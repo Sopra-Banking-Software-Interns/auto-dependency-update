@@ -41,4 +41,5 @@ jobs:
           ./dependency_updates.sh
         shell: bash
       - name: Get Latest Commit SHA
-        run: echo "The latest commit SHA is ${{ github.sha }}"
+        id: get-sha
+        run: echo "::set-output name=commit-sha::${{ github.sha }}"
