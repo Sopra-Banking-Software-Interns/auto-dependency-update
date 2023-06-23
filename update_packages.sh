@@ -25,7 +25,7 @@ while IFS= read -r line; do
   echo "$latest_version"
 
   # Update the JSON object with the package and version changes
-  json_changes=$(echo "$json_changes" | jq --arg package "$package_name" --arg version "$latest_version" '.dependencies[$package] = $version')
+  json_changes=$(jq --arg package "$package_name" --arg version "$latest_version" '.dependencies[$package] = $version' "$json_changes")
 
 # Wait for a few seconds to avoid rate limiting (if necessary)
 sleep 3
