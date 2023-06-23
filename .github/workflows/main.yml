@@ -28,7 +28,20 @@ jobs:
             echo "Skipping further execution to break the loop."
             exit 0
           fi
-      
+      - name: Run Checks
+        id: run-checks
+        run: |
+          # Perform your checks here
+          # Access the SHA from the previous workflow output
+          commitSha=$(echo "${{ needs.get-sha.outputs.commit-sha }}")
+          echo "The commit SHA is $commitSha"
+
+      - name: Stop Workflow
+        if: ${{ steps.run-checks.outputs.commitSha == github.sha }}
+        run: echo "Stopping workflow because the SHA matches" 
+             exit 0
+        
+        
       - name: Run script file
         run: |
           echo "Running package2dependency.sh"
