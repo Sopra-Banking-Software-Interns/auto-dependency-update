@@ -41,7 +41,7 @@ current_sha=$(curl -s -u "$GITHUB_USERNAME:$GITHUB_TOKEN" "https://api.github.co
 curl -X PUT -u "$GITHUB_USERNAME:$GITHUB_TOKEN" \
   -H "Accept: application/vnd.github+json" \
   -d '{
-    "message": "Update package.json",
+    "message": "workflow2",
     "content": "'"$encoded_package_json"'",
     "sha": "'"$current_sha"'"
   }' "https://api.github.com/repos/$REPO_OWNER/$REPO_NAME/contents/$PACKAGE_JSON_FILE"
