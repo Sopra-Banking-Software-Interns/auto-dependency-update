@@ -1,50 +1,50 @@
-# env:
-#   token: ${{ secrets.ACCESS_TOKEN }}
+env:
+  token: ${{ secrets.ACCESS_TOKEN }}
 
-# name: create-map
-# on: push
+name: create-map
+on: push
 
-# jobs:
-#   run_tests:
-#     runs-on: ubuntu-20.04
-#     steps:
-#       - name: Debug Info
-#         run: |
-#           echo "Running Debug Info"
-#           env
-#         shell: bash
+jobs:
+  run_tests:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Debug Info
+        run: |
+          echo "Running Debug Info"
+          env
+        shell: bash
 
-#       - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-#       - name: Retrieve Workflow Run ID
-#         run: |
-#           echo "Workflow Run ID: ${{ env.WORKFLOW_RUN_ID }}"
-#           # Store the Workflow Run ID in a variable
-#           WORKFLOW_RUN_ID="${{ env.WORKFLOW_RUN_ID }}"
+      - name: Retrieve Workflow Run ID
+        run: |
+          echo "Workflow Run ID: ${{ env.WORKFLOW_RUN_ID }}"
+          # Store the Workflow Run ID in a variable
+          WORKFLOW_RUN_ID="${{ env.WORKFLOW_RUN_ID }}"
 
-#       - name: Check Workflow Run ID
-#         run: |
-#           if [[ "${{ github.run_id }}" == "$WORKFLOW_RUN_ID" ]]; then
-#             echo "Skipping further execution to break the loop."
-#             exit 0
-#           fi
+      - name: Check Workflow Run ID
+        run: |
+          if [[ "${{ github.run_id }}" == "$WORKFLOW_RUN_ID" ]]; then
+            echo "Skipping further execution to break the loop."
+            exit 0
+          fi
 
 
       
-#       - name: Run script file
-#         run: |
-#           echo "Running package2dependency.sh"
-#           chmod +x ./package2dependency.sh
-#           ./package2dependency.sh
+      - name: Run script file
+        run: |
+          echo "Running package2dependency.sh"
+          chmod +x ./package2dependency.sh
+          ./package2dependency.sh
           
-#           echo "Running check_latest.sh"
-#           chmod +x ./check_latest.sh
-#           ./check_latest.sh
-#         shell: bash
+          echo "Running check_latest.sh"
+          chmod +x ./check_latest.sh
+          ./check_latest.sh
+        shell: bash
 
-#       - name: create issue
-#         run: |
-#           echo "Running Create_Issue.sh"
-#           chmod +x ./Create_Issue.sh
-#           ./Create_Issue.sh
-#         shell: bash
+      - name: create issue
+        run: |
+          echo "Running Create_Issue.sh"
+          chmod +x ./Create_Issue.sh
+          ./Create_Issue.sh
+        shell: bash
