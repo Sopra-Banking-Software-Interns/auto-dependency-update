@@ -1,7 +1,7 @@
 env:
   token: ${{ secrets.ACCESS_TOKEN }}
 
-name: create-map
+name: Create-Incident
 on: push
 
 jobs:
@@ -28,8 +28,6 @@ jobs:
             echo "Skipping further execution to break the loop."
             exit 0
           fi
-
-
       
       - name: Run script file
         run: |
